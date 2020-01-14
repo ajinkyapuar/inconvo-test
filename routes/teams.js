@@ -26,10 +26,13 @@ const teamsRoutes = (app, fs) => {
 
             let dataArr = JSON.parse(data);
 
-            let teamName = capitalizeFirstLetter(req.body["name"]);
+            let teamName = req.params.name;
+
+            console.log(teamName);
+            
 
             var result = dataArr.filter(obj => {
-                return obj["name"] === teamName;
+                return obj["name"].toLowerCase() === teamName.toLowerCase();
               })
 
             res.send(result);
@@ -47,9 +50,9 @@ const teamsRoutes = (app, fs) => {
             
             let teamName = capitalizeFirstLetter(req.body["name"]);
 
-            let teamObj = dataArr.find(obj => obj.name === teamName);
+            let teamObj = dataArr.find(obj => obj.name.toLowerCase() === teamName.toLowerCase());
             
-            let teamIdx = dataArr.findIndex(obj => obj.name === teamName);
+            let teamIdx = dataArr.findIndex(obj => obj.name.toLowerCase() === teamName.toLowerCase());
             
             let Idx;
 
